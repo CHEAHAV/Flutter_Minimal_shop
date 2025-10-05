@@ -18,18 +18,23 @@ class MyProductTile extends StatelessWidget {
           // cancel button
           MaterialButton(
             onPressed: () => Navigator.pop(context),
-            child: Text("Cancle"),
+            child: Text("Cancle", style: TextStyle(color: Colors.cyan)),
           ),
 
           // yes button
-          MaterialButton(
+          ElevatedButton(
             onPressed: () {
               Navigator.pop(context);
 
               // add to cart
               context.read<Shop>().addToCard(product);
             },
-            child: Text("Yes"),
+            child: Text(
+              "Yes",
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.inversePrimary,
+              ),
+            ),
           ),
         ],
       ),

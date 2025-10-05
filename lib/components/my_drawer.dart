@@ -1,8 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:minimal_shop/components/my_list_lite.dart';
+import 'package:minimal_shop/services/auth_service.dart';
 
-class MyDrawer extends StatelessWidget {
+class MyDrawer extends StatefulWidget {
   const MyDrawer({super.key});
+
+  @override
+  State<MyDrawer> createState() => _MyDrawerState();
+}
+
+class _MyDrawerState extends State<MyDrawer> {
+  var authService = AuthService();
+  // sign out method
+  void sigout(BuildContext context) async {
+    await authService.signOut();
+    if (context.mounted) {
+      Navigator.pushNamed(context, '/login_page');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,11 +67,7 @@ class MyDrawer extends StatelessWidget {
             child: MyListLite(
               text: "Exit",
               icon: Icons.logout,
-              onTap: () => Navigator.pushNamedAndRemoveUntil(
-                context,
-                '/intro_page',
-                (route) => false,
-              ),
+              onTap: () => sigout(context),
             ),
           ),
         ],

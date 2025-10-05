@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:minimal_shop/components/my_button.dart';
 import 'package:minimal_shop/models/product.dart';
@@ -16,20 +17,25 @@ class CardPage extends StatelessWidget {
         content: Text("Remove this item from your cart?"),
         actions: [
           // cancel button
-          MaterialButton(
+          CupertinoButton(
             onPressed: () => Navigator.pop(context),
-            child: Text("Cancle"),
+            child: Text("Cancle", style: TextStyle(color: Colors.cyan)),
           ),
 
           // yes button
-          MaterialButton(
+          ElevatedButton(
             onPressed: () {
               Navigator.pop(context);
 
               // add to cart
               context.read<Shop>().removeFromCart(product);
             },
-            child: Text("Yes"),
+            child: Text(
+              "Yes",
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.inversePrimary,
+              ),
+            ),
           ),
         ],
       ),
@@ -74,14 +80,24 @@ class CardPage extends StatelessWidget {
                       final item = cart[index];
 
                       // return as a cart tile UI
-                      return ListTile(
-                        title: Text(item.name),
-                        subtitle: Text(item.price.toStringAsFixed(2)),
+                      return Card(
+                        child: ListTile(
+                          leading: CircleAvatar(
+                            backgroundColor: Theme.of(
+                              context,
+                            ).colorScheme.inverseSurface,
+                            child: ClipOval(child: Image.asset(item.imagePath)),
+                          ),
+                          title: Text(item.name),
+                          subtitle: Text(
+                            '\$   ${item.price.toStringAsFixed(2)}',
+                          ),
 
-                        // remove item from cart
-                        trailing: IconButton(
-                          onPressed: () => removeItemFromCart(context, item),
-                          icon: Icon(Icons.remove),
+                          // remove item from cart
+                          trailing: IconButton(
+                            onPressed: () => removeItemFromCart(context, item),
+                            icon: Icon(Icons.remove),
+                          ),
                         ),
                       );
                     },

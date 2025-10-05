@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "868807121941",
+    "project_id": "minimalshopauth",
+    "storage_bucket": "minimalshopauth.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:868807121941:android:284d560e2a4cd46be1821c",
+        "android_client_info": {
+          "package_name": "com.example.minimal_shop"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtoPSCqlXAR9I_mlK4-TbRKARZqcx-8j8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
